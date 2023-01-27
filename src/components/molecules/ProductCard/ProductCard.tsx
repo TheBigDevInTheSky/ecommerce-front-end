@@ -1,20 +1,16 @@
+import styles from './ProductCard.module.scss'
+
 export function ProductCard() {
-    {
-        /* w className="ProductCard"e have a card that holds a product image */
-    }
-    {
-        /* It has the product name  
-            {/* Price */
-    }
-    {
-        /* A counter to add and subtract product image*/
-    }
     return (
-        <div className="productCard">
-            <img src="https://source.unsplash.com/C6oPXOatFD8" alt="" />
-            <div>
-                <div className="rating">xxx</div>
-                <div className="price">$9999</div>
+        <div className={styles.product_card}>
+            <img
+                src="https://source.unsplash.com/C6oPXOatFD8"
+                className={styles.product_image}
+                alt=""
+            />
+            <div className={styles.price_rating}>
+                <div className={styles.rating}>xxx</div>
+                <div className={styles.price}>$9999</div>
             </div>
             <h4>Product Name</h4>
             <p>
