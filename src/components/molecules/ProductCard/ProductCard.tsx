@@ -10,8 +10,17 @@ export function ProductCard() {
         /* A counter to add and subtract product image*/
     }
     return (
-        <div>
-            <img src="" alt="" />
+        <div className="productCard">
+            <img src="https://source.unsplash.com/C6oPXOatFD8" alt="" />
+            <div>
+                <div className="rating">xxx</div>
+                <div className="price">$9999</div>
+            </div>
+            <h4>Product Name</h4>
+            <p>
+                Product Description: Lorem ipsum dolor sit amet consectetur
+                adipisicing elit. Blanditiis, nulla?
+            </p>
         </div>
     )
 }
