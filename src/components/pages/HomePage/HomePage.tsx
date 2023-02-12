@@ -1,3 +1,5 @@
+import { Navbar } from '../../organisms'
+
 export function HomePage() {
-    return <div>Home Page</div>
+    return <div></div>
 }
