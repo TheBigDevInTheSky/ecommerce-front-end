@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import styles from './Navbar.module.scss'
-import cart from '../../../images/icon-cart.svg'
+import { Cart } from '../../atoms'
 
 export const Navbar: React.FC = () => (
     <nav className={styles.navigation}>
@@ -19,6 +19,6 @@ export const Navbar: React.FC = () => (
                 <Link to="/contact">Contact</Link>
             </li>
         </ul>
-        <img src={cart} alt="" />
+        <Cart />
     </nav>
 )

@@ -1,1 +1,1 @@
-export { ExampleAtom } from './ExampleAtom/ExampleAtom'
+export { Cart } from './Cart/Cart'
