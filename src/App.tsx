@@ -6,18 +6,19 @@ import { ExamplePage, HomePage, Navbar } from './components'
 
 const queryClient = new QueryClient()
 
-const App: React.FC = () => (
-    <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-            <Navbar />
-            <Routes>
-                {/* Create a <Route /> with a path for any additional route we may need*/}
-                <Route path="/" element={<HomePage />} />
-                <Route path="/examplePage" element={<ExamplePage />} />
-            </Routes>
-        </BrowserRouter>
-        <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
-)
+const App: React.FunctionComponent = () => {
+    return (
+        <QueryClientProvider client={queryClient}>
+            <BrowserRouter>
+                <Navbar />
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/examplePage" element={<ExamplePage />} />
+                </Routes>
+            </BrowserRouter>
+            <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+        </QueryClientProvider>
+    )
+}
 
 export default App
