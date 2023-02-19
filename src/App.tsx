@@ -2,9 +2,15 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
-import { ExamplePage, HomePage, Navbar } from './components'
+import { HomePage, Navbar, TestingPage } from './components'
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            refetchOnWindowFocus: false,
+        },
+    },
+})
 
 const App: React.FunctionComponent = () => {
     return (
@@ -13,7 +19,7 @@ const App: React.FunctionComponent = () => {
                 <Navbar />
                 <Routes>
                     <Route path="/" element={<HomePage />} />
-                    <Route path="/examplePage" element={<ExamplePage />} />
+                    <Route path="/testing" element={<TestingPage />} />
                 </Routes>
             </BrowserRouter>
             <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
