@@ -1,43 +1,78 @@
+import { useState } from 'react'
+
 export function ProductForm() {
+    const [name, setName] = useState('')
+    const [category, setCategory] = useState('')
+    const [amount, setAmount] = useState(0)
+    const [price, setPrice] = useState(0)
+    const [description, setDescription] = useState('')
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        let res = fetch('http://localhost:3000/products', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: name,
+                category: category,
+                amount: amount,
+                price: price,
+                description: description,
+            }),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log('Success:', data)
+            })
+            .catch((error) => {
+                console.error('Error:', error)
+            })
+    }
+
     return (
-        <form action="http://localhost:3000/products" method="POST">
-            <div>
-                <label htmlFor="product-name">Product Name:</label>
-                <input
-                    type="text"
-                    placeholder="Product name"
-                    name="product"
-                    id="product"
-                    required
-                />
-            </div>
-            <div>
-                <label htmlFor="product-category">Category:</label>
-                <select name="category" id="category">
-                    <option value="menswear">Menswear</option>
-                    <option value="womenswear">Womenswear</option>
-                    <option value="shoes">Shoes</option>
-                    <option value="jackets">Jackets</option>
-                </select>
-            </div>
-            <div>
-                <label htmlFor="product-amount">Product Quantity:</label>
-                <input type="number" name="amount" required />
-            </div>
-            <div>
-                <label htmlFor="price">Price:</label>
-                <input type="number" required name="price" id="price" />
-            </div>
-            <div>
-                <label htmlFor="description">Description:</label>
-                <textarea
-                    name="description"
-                    id="description"
-                    cols={30}
-                    rows={2}
-                ></textarea>
-            </div>
-            <input type="submit" value="submit" />
+        <form onSubmit={handleSubmit}>
+            <label htmlFor="name">Name:</label>
+            <input
+                type="text"
+                name="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+            />
+
+            <label htmlFor="category">Category:</label>
+            <input
+                type="text"
+                name="category"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+            />
+
+            <label htmlFor="amount">Amount:</label>
+            <input
+                type="number"
+                name="amount"
+                value={amount}
+                onChange={(e) => setAmount(parseInt(e.target.value))}
+            />
+
+            <label htmlFor="price">Price:</label>
+            <input
+                type="number"
+                name="price"
+                value={price}
+                onChange={(e) => setPrice(parseInt(e.target.value))}
+            />
+
+            <label htmlFor="description">Description:</label>
+            <textarea
+                name="description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+            ></textarea>
+
+            <button type="submit">Submit</button>
         </form>
     )
 }
