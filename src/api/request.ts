@@ -25,32 +25,40 @@ const apiURL = 'http://localhost:3000/'
 
 export async function getRequest(endpoint = '', headers = {}) {
     const url = apiURL + endpoint
-
     const result = await axios.get(url, headers)
-
     return result.data
 }
 
-export async function postRequest(endpoint = '', headers = {}) {
+export async function postRequest(endpoint = '', data = {}, headers = {}) {
     const url = apiURL + endpoint
 
-    const result = await axios.post(url, headers)
+    const result = await axios.post(url, { headers, data })
 
     return result.data
 }
 
-export async function putRequest(endpoint = '', headers = {}) {
+export async function putRequest(endpoint = '', data = {}, headers = {}) {
     const url = apiURL + endpoint
-
-    const result = await axios.put(url, headers)
-
+    const result = await axios.put(url, { headers, data })
     return result.data
 }
 
-export async function deleteRequest(endpoint = '', headers = {}) {
+export async function deleteRequest(endpoint = '', data = {}, headers = {}) {
     const url = apiURL + endpoint
-
-    const result = await axios.delete(url, headers)
-
+    const result = await axios.delete(url, { headers, data })
     return result.data
 }
+
+const { data } = await axios.post(
+    'https://httpbin.org/post',
+    {
+        firstName: 'Fred',
+        lastName: 'Flintstone',
+        orders: [1, 2, 3],
+    },
+    {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+    }
+)

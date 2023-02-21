@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { postRequest } from '../../../api/request'
 
 export function ProductForm() {
     const [name, setName] = useState('')
@@ -7,28 +8,26 @@ export function ProductForm() {
     const [price, setPrice] = useState(0)
     const [description, setDescription] = useState('')
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        let res = fetch('http://localhost:3000/products', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                name: name,
-                category: category,
-                amount: amount,
-                price: price,
-                description: description,
-            }),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log('Success:', data)
-            })
-            .catch((error) => {
-                console.error('Error:', error)
-            })
+        try {
+            const { data } = await postRequest(
+                'products',
+                {
+                    name,
+                    category,
+                    amount,
+                    price,
+                    description,
+                },
+                {
+                    'Content-Type': 'application/json',
+                }
+            )
+            console.log(data)
+        } catch (error: any) {
+            console.log(error.message)
+        }
     }
 
     return (
@@ -76,9 +75,3 @@ export function ProductForm() {
         </form>
     )
 }
-
-// name: { type: String, required: true },
-// 	category: { type: String, required: true },
-// 	amount: { type: Number, default: 0 },
-// 	price: { type: Number, required: true },
-// 	description: { type: String, required: true },
