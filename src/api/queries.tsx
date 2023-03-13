@@ -12,10 +12,10 @@ export const QUERY = {
         key: [QUERIES.GET_PRODUCT],
         fn: () => REQUEST[REQUEST_METHOD.GET]('products'),
     },
-    [QUERIES.POST_PRODUCT]: {
-        key: [QUERIES.POST_PRODUCT],
-        fn: () => REQUEST[REQUEST_METHOD.POST]('products'),
-    },
+    // [QUERIES.POST_PRODUCT]: {
+    //     key: [QUERIES.POST_PRODUCT],
+    //     fn: () => REQUEST[REQUEST_METHOD.POST]('products'),
+    // },
     [QUERIES.PUT_PRODUCT]: {
         key: [QUERIES.PUT_PRODUCT],
         fn: () => REQUEST[REQUEST_METHOD.PUT]('products'),
