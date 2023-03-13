@@ -1,5 +1,6 @@
 import { useQuery } from 'react-query'
 import { QUERIES, QUERY } from '../../../api'
+import { ProductForm } from '../../molecules'
 
 export function TestingPage() {
     const { key, fn } = QUERY[QUERIES.GET_PRODUCT]
@@ -7,7 +8,6 @@ export function TestingPage() {
     const { status, data, error, isFetching } = useQuery(key, fn, {
         refetchInterval: 600000,
     })
-    console.log({ status, isFetching, error, data })
 
     return status === 'loading' ? (
         <div>Loading</div>
@@ -16,6 +16,7 @@ export function TestingPage() {
     ) : (
         <div>
             <h3>TestingPage</h3>
+            <ProductForm />
         </div>
     )
 }

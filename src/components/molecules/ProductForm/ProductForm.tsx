@@ -7,22 +7,25 @@ export function ProductForm() {
     const [price, setPrice] = useState(0)
     const [description, setDescription] = useState('')
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        let res = fetch('http://localhost:3000/products', {
+
+        let res = await fetch('http://localhost:3000/products', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                name: name,
-                category: category,
-                amount: amount,
-                price: price,
-                description: description,
+                name,
+                category,
+                amount,
+                price,
+                description,
             }),
         })
-            .then((response) => response.json())
+            .then((response) => {
+                response.json()
+            })
             .then((data) => {
                 console.log('Success:', data)
             })
@@ -76,9 +79,3 @@ export function ProductForm() {
         </form>
     )
 }
-
-// name: { type: String, required: true },
-// 	category: { type: String, required: true },
-// 	amount: { type: Number, default: 0 },
-// 	price: { type: Number, required: true },
-// 	description: { type: String, required: true },
